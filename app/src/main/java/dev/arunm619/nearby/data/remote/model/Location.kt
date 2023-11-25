@@ -1,4 +1,4 @@
-package dev.arunm619.nearby.remote
+package dev.arunm619.nearby.data.remote.model
 
 data class Location(
     val lat: Double,
