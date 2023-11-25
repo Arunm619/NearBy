@@ -1,5 +1,7 @@
 package dev.arunm619.nearby.presentation
 
+import android.content.Context
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -7,6 +9,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -18,10 +21,14 @@ import dev.arunm619.nearby.ui.theme.NearByTheme
 @Composable
 fun VenueItem(
     venue: Venue,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    onClick: (String) -> Unit = {}
 ) {
     Card(
-        modifier = modifier,
+        modifier = modifier
+            .clickable {
+                onClick.invoke(venue.url)
+            },
     ) {
         Row(
             modifier = Modifier
@@ -59,11 +66,6 @@ fun VenueItem(
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(8.dp))
-                Text(
-                    text = venue.url,
-                    modifier = Modifier.fillMaxWidth()
-                )
-                Spacer(modifier = Modifier.height(8.dp))
             }
         }
     }
@@ -71,7 +73,7 @@ fun VenueItem(
 
 @Preview
 @Composable
-fun BeerItemPreview() {
+fun VenueItemPreview() {
     NearByTheme {
         VenueItem(
             venue = Venue(
@@ -80,7 +82,8 @@ fun BeerItemPreview() {
                 address = "Test Address",
                 url = "Test Url"
             ),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+            onClick = {}
         )
     }
 }

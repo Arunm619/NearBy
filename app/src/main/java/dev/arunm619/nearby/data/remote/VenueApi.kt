@@ -13,7 +13,7 @@ interface VenueAPI {
         @Query("client_id") clientId: String = "Mzg0OTc0Njl8MTcwMDgxMTg5NC44MDk2NjY5",
         @Query("lat") lat: Double? = null,
         @Query("lon") lon: Double? = null,
-        @Query("range") radius: Int? = null,
+        @Query("range") radius: String? = "12km",
         @Query("q") query: String? = null
     ): VenueBackendResponse
 
